@@ -25,7 +25,7 @@ export class SignUpController implements Controller {
       }
       throw new ServerError()
     } catch (err) {
-      return internalServerError(new ServerError())
+      return internalServerError()
     }
   }
 }
