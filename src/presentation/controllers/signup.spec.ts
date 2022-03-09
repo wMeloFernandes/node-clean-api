@@ -114,17 +114,11 @@ describe('SignUp Controller', () => {
     expect(isValidSpy).toHaveBeenCalledWith('valid@mail.com')
   })
 
-  const emailValidator = (): EmailValidator => {
-    class EmailValidatorStub implements EmailValidator {
-      isValid (email: string): boolean {
-        throw new Error()
-      }
-    }
-    return new EmailValidatorStub()
-  }
   test('Should return 500 if emailValidator throws', () => {
-    const emailValidatorStub = emailValidator()
-    const sut = new SignUpController(emailValidatorStub)
+    const { sut, emailValidatorStub } = makeSut()
+    jest.spyOn(emailValidatorStub, 'isValid').mockImplementation(() => {
+      throw new Error()
+    })
     const httpRequest = {
       body: {
         name: 'name',
