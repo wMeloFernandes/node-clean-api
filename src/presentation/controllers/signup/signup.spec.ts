@@ -1,8 +1,8 @@
-import { InvalidParamError, MissingParamError, ServerError } from '../errors'
-import { EmailValidator } from '../protocols'
+import { InvalidParamError, MissingParamError, ServerError } from '../../errors'
+import { EmailValidator } from '../../protocols'
 import { SignUpController } from './signup'
-import { AddAccountModel, AddAccount } from '../../domain/usecases/add-account'
-import { AccountModel } from '../../domain/models/account'
+import { AddAccountModel, AddAccount } from '../../../domain/usecases/add-account'
+import { AccountModel } from '../../../domain/models/account'
 
 interface SutTypes {
   sut: SignUpController
@@ -203,7 +203,6 @@ describe('SignUp Controller', () => {
       }
     }
     const httpResponse = await sut.handle(httpRequest)
-    console.log(httpResponse)
     expect(httpResponse.statusCode).toBe(500)
     expect(httpResponse.body).toEqual(new ServerError())
   })
