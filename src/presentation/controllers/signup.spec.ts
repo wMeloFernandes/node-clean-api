@@ -32,7 +32,7 @@ describe('SignUp Controller', () => {
       body: {
         email: 'email@mail.com',
         password: 'password',
-        password_confirmation: 'password'
+        passwordConfirmation: 'password'
       }
     }
     const httpResponse = sut.handle(httpRequest)
@@ -47,7 +47,7 @@ describe('SignUp Controller', () => {
       body: {
         name: 'name',
         password: 'password',
-        password_confirmation: 'password'
+        passwordConfirmation: 'password'
       }
     }
     const httpResponse = sut.handle(httpRequest)
@@ -62,7 +62,7 @@ describe('SignUp Controller', () => {
       body: {
         name: 'name',
         email: 'email@mail.com',
-        password_confirmation: 'password'
+        passwordConfirmation: 'password'
       }
     }
     const httpResponse = sut.handle(httpRequest)
@@ -83,7 +83,7 @@ describe('SignUp Controller', () => {
     const httpResponse = sut.handle(httpRequest)
 
     expect(httpResponse.statusCode).toBe(400)
-    expect(httpResponse.body).toEqual(new MissingParamError('password_confirmation'))
+    expect(httpResponse.body).toEqual(new MissingParamError('passwordConfirmation'))
   })
 
   test('Should return 400 if an invalid email is provided', () => {
@@ -94,7 +94,7 @@ describe('SignUp Controller', () => {
         name: 'name',
         email: 'invalid@mail.com',
         password: 'password',
-        password_confirmation: 'password'
+        passwordConfirmation: 'password'
       }
     }
     const httpResponse = sut.handle(httpRequest)
@@ -111,7 +111,7 @@ describe('SignUp Controller', () => {
         name: 'name',
         email: 'valid@mail.com',
         password: 'password',
-        password_confirmation: 'password'
+        passwordConfirmation: 'password'
       }
     }
     sut.handle(httpRequest)
@@ -129,12 +129,28 @@ describe('SignUp Controller', () => {
         name: 'name',
         email: 'invalid@mail.com',
         password: 'password',
-        password_confirmation: 'password'
+        passwordConfirmation: 'password'
       }
     }
     const httpResponse = sut.handle(httpRequest)
 
     expect(httpResponse.statusCode).toBe(500)
     expect(httpResponse.body).toEqual(new ServerError())
+  })
+
+  test('Should return 400 if passwordConfirmations fails', () => {
+    const { sut } = makeSut()
+    const httpRequest = {
+      body: {
+        name: 'name',
+        email: 'invalid@mail.com',
+        password: 'password',
+        passwordConfirmation: 'invalid_password'
+      }
+    }
+    const httpResponse = sut.handle(httpRequest)
+
+    expect(httpResponse.statusCode).toBe(400)
+    expect(httpResponse.body).toEqual(new InvalidParamError('passwordConfirmation'))
   })
 })
