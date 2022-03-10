@@ -1,10 +1,20 @@
 {
 	"compilerOptions": {
-		"outDir": "./dist",
+		"outDir": "dist",
 		"module": "commonjs",
 		"target": "ES2022",
 		"esModuleInterop": true,
+		"sourceMap": true,
+		"rootDir": "src",
+		"baseUrl": "src",
 		"allowJs": true,
-		"strict": true
-	}
+		"strict": true,
+		"paths": {
+			"@/*" : ["*"]
+		}
+	},
+	"include": [
+		"src"
+	],
+	"exclude": []
 }
