@@ -4,7 +4,7 @@ import { SignUpController } from './signup'
 import { AddAccountModel, AddAccount } from '../../../domain/usecases/add-account'
 import { AccountModel } from '../../../domain/models/account'
 
-interface SutTypes {
+type SutTypes = {
   sut: SignUpController
   emailValidatorStub: EmailValidator
   addAccountStub: AddAccount

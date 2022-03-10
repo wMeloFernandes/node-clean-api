@@ -4,7 +4,7 @@ import { AddAccountRepository } from '../../protocols/add-account-repository'
 import { DbAddAccount } from './db-add-account'
 import { Encrypter } from './protocols/encrypter'
 
-interface SutTypes {
+type SutTypes = {
   sut: DbAddAccount
   encrypterStub: Encrypter
   addAccountRepositoryStub: AddAccountRepository
