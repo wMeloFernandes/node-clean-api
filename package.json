@@ -6,7 +6,7 @@
   "scripts": {
     "test": "jest --passWithNoTests --silent --noStackTrace --runInBand",
     "test:verbose": "jest --passWithNoTests",
-    "test:unit": "npm run test -- --watch",
+    "test:unit": "npm run test -- --watch --no-cache",
     "test:staged": "npm run test -- --no-cache --findRelatedTests",
     "test:ci": "npm run test -- --coverage"
   },
