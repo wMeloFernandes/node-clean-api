@@ -1,4 +1,4 @@
-import { Encrypter } from '../../data/usecases/add-account/protocols/encrypter'
+import { Encrypter } from '@/data/usecases/add-account/protocols/encrypter'
 import bcrypt from 'bcrypt'
 
 export class BCryptAdapter implements Encrypter {
