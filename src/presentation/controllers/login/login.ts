@@ -1,6 +1,6 @@
 import { Authentication } from '@/domain/usecases/authentication'
 import { InvalidParamError, MissingParamError } from '@/presentation/errors'
-import { badRequest, created, internalServerError, unauthorized } from '@/presentation/helpers/http-helper'
+import { badRequest, internalServerError, ok, unauthorized } from '@/presentation/helpers/http-helper'
 import { Controller, EmailValidator, HttpReponse, HttpRequest } from '@/presentation/protocols'
 
 export class LoginController implements Controller {
@@ -28,7 +28,7 @@ export class LoginController implements Controller {
       if (!token) {
         return unauthorized()
       }
-      return created({})
+      return ok({ token: 'any_token' })
     } catch (e) {
       return internalServerError()
     }

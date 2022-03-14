@@ -2,6 +2,11 @@ import { ServerError } from '@/presentation/errors/server-error'
 import { HttpReponse } from '@/presentation/protocols/http'
 import { UnauthorizedError } from '../errors/unauthorized-error'
 
+export const ok = (data: any): HttpReponse => ({
+  statusCode: 200,
+  body: data
+})
+
 export const created = (data: any): HttpReponse => ({
   statusCode: 201,
   body: data
